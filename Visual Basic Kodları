@@ -1,0 +1,64 @@
+
+
+Private Sub CommandButton2_Click()
+
+End Sub
+
+Private Sub Label1_Click()
+
+End Sub
+
+Private Sub CommandButton_cikis_Click()
+Unload Me
+End Sub
+
+Private Sub CommandButton_kayit_Click()
+Dim iRow As Long
+Dim ws As Worksheet
+Set ws = Worksheets("Sayfa1")
+
+'find first empty row in database
+iRow = ws.Cells.Find(What:="*", SearchOrder:=xlRows, _
+    SearchDirection:=xlPrevious, LookIn:=xlValues).Row + 1
+
+'check for a Name number
+If Trim(Me.TextBox_etiket.Value) = "" Then
+  Me.TextBox_etiket.SetFocus
+  MsgBox "Lütfen Etiket Girin"
+  
+   Exit Sub
+   
+ElseIf (Me.TextBox_seri.Value) = "" Then
+  Me.TextBox_seri.SetFocus
+  MsgBox "Lütfen Seri Numarısı Girin"
+  
+  Exit Sub
+
+End If
+
+'copy the data to the database
+ws.Cells(iRow, 1).Value = Me.TextBox_etiket.Value
+ws.Cells(iRow, 2).Value = Me.TextBox_seri.Value
+ws.Cells(iRow, 3).Value = Me.TextBox_renk.Value
+ws.Cells(iRow, 4).Value = Me.TextBox_namlu.Value
+ws.Cells(iRow, 5).Value = Me.TextBox_kalibre.Value
+ws.Cells(iRow, 6).Value = Me.TextBox_model.Value
+
+MsgBox "KAYIT YAPILDI", vbOKOnly + vbInformation, "Veri Kaydedildi"
+'clear the data
+Me.TextBox_etiket.Value = ""
+Me.TextBox_seri.Value = ""
+Me.TextBox_renk.Value = ""
+Me.TextBox_namlu.Value = ""
+Me.TextBox_kalibre.Value = ""
+Me.TextBox_model.Value = ""
+Me.TextBox_etiket.SetFocus
+End Sub
+
+Private Sub Label6_Click()
+
+End Sub
+
+Private Sub UserForm_Click()
+
+End Sub
